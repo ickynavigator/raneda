@@ -1,0 +1,26 @@
+{
+  "name": "raneda",
+  "version": "1.0.0",
+  "description": "Raneda Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm build --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ickynavigator/raneda.git"
+  },
+  "author": "Obi Fortune",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ickynavigator/raneda/issues"
+  },
+  "homepage": "https://github.com/ickynavigator/raneda#readme",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "nodemon": "^2.0.7"
+  }
+}

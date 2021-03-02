@@ -1,4 +1,25 @@
-* {
-  margin: 0;
-  padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Pacifico&family=Raleway&family=Roboto&display=swap");
+
+main {
+  min-height: 80vh;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+h1 {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+}
+
+h3 {
+  padding: 1rem 0;
+}
+
+.logoP {
+  /* font-family: "Great Vibes", cursive; */
+  font-family: "Pacifico", cursive;
+  letter-spacing: 0.1em;
 }

@@ -7,6 +7,7 @@
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "client": "npm build --prefix frontend",
+    "clientBuild": "npm run build --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {

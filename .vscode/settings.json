@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "*.js": "javascriptreact"
+    "**/backend/**/*.js": "javascript",
+    "**/frontend/**/*.js": "javascriptreact"
   }
 }

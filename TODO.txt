@@ -1,0 +1,2 @@
+Get the raneda icon from harry
+Set up the storage on firebase

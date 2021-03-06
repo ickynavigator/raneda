@@ -1,9 +1,9 @@
 import axios from "axios";
-import { PayPalButton } from "react-paypal-button-v2";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import {
@@ -15,6 +15,14 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from "../constants/orderConstants";
+import {
+  addPayPalScript,
+  Paypalfunc,
+  Flutterwavefunc,
+  PayButt,
+  DeliverButt,
+  AcctNum,
+} from "../components/PaymentComponent";
 
 const OrderScreen = ({ match }) => {
   const orderId = match.params.id;
@@ -26,6 +34,9 @@ const OrderScreen = ({ match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const cart = useSelector((state) => state.cart);
+  const { paymentMethod } = cart;
+
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, error, loading } = orderDetails;
 
@@ -36,17 +47,7 @@ const OrderScreen = ({ match }) => {
   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
   useEffect(() => {
-    const addPayPalScript = async () => {
-      const { data: clientId } = await axios.get("/api/config/paypal");
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-      script.async = true;
-      script.onload = () => {
-        setSdkReady(true);
-      };
-      document.body.appendChild(script);
-    };
+    addPayPalScript(setSdkReady);
 
     if (!order || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET });
@@ -54,7 +55,7 @@ const OrderScreen = ({ match }) => {
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
-        addPayPalScript();
+        addPayPalScript(setSdkReady);
       } else {
         setSdkReady(true);
       }
@@ -62,12 +63,56 @@ const OrderScreen = ({ match }) => {
   }, [dispatch, order, orderId, successPay, successDeliver]);
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult);
+    dispatch(payOrder(orderId, { ...paymentResult, paymentMethod }));
+  };
+
+  const adminDeliverHandler = () => {
+    dispatch(deliverOrder(order));
+  };
+
+  const adminPayHandler = () => {
+    const paymentResult = {
+      // id: ,
+      // status: ,
+      // update_time: Date.now(),
+      // email_address: ,
+      // link: e
+    };
     dispatch(payOrder(orderId, paymentResult));
   };
 
-  const deliverHandler = () => {
-    dispatch(deliverOrder(order));
+  const paySwitch = (val) => {
+    switch (val) {
+      case "accountNum":
+        return <AcctNum />;
+      case "paypal":
+        return (
+          <Paypalfunc
+            sdkReady={sdkReady}
+            amount={order.totalPrice}
+            handler={successPaymentHandler}
+          />
+        );
+      case "flutterwave":
+        const flutterinfo = async () => {
+          const { data: clientId } = await axios.get("/api/config/flutterwave");
+          const flutterdata = {
+            pub_key: clientId,
+            tx_ref: Date.now(),
+            amount: order.totalPrice,
+            currency: "ngn",
+            customer: {
+              email: userInfo.email,
+              // phonenumber: userInfo.phonenum,
+              name: userInfo.name,
+            },
+          };
+          return flutterdata;
+        };
+        return <Flutterwavefunc info={flutterinfo()} />;
+      default:
+        return <p>{/* <LinkContainer></LinkContainer> */}</p>;
+    }
   };
 
   return loading ? (
@@ -94,6 +139,10 @@ const OrderScreen = ({ match }) => {
                 {order.shippingAddress.address}, {order.shippingAddress.city},{" "}
                 {order.shippingAddress.postalCode},{" "}
                 {order.shippingAddress.country}
+              </p>
+              <p>
+                <strong>Number:</strong>
+                {cart.shippingAddress.phoneNum}
               </p>
               {order.isDelivered ? (
                 <Message variant="success">
@@ -187,35 +236,30 @@ const OrderScreen = ({ match }) => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
+
               {!order.isPaid && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
-                  {!sdkReady ? (
-                    <Loader />
-                  ) : (
-                    <PayPalButton
-                      amount={order.totalPrice}
-                      onSuccess={successPaymentHandler}
-                    />
-                  )}
+                  {paySwitch(paymentMethod)}
                 </ListGroup.Item>
               )}
 
               {loadingDeliver && <Loader />}
-              {userInfo &&
-                userInfo.isAdmin &&
-                order.isPaid &&
-                !order.isDelivered && (
-                  <ListGroup.Item>
-                    <Button
-                      type="button"
-                      className="btn btn-block"
-                      onClick={deliverHandler}
-                    >
-                      Mark as Delivered
-                    </Button>
-                  </ListGroup.Item>
-                )}
+              {userInfo && userInfo.isAdmin ? (
+                !order.isPaid ? (
+                  <>
+                    <PayButt handler={adminPayHandler} />
+                  </>
+                ) : (
+                  !order.isDelivered && (
+                    <>
+                      <DeliverButt handler={adminDeliverHandler} />
+                    </>
+                  )
+                )
+              ) : (
+                <></>
+              )}
             </ListGroup>
           </Card>
         </Col>

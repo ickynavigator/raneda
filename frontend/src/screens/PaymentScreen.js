@@ -15,7 +15,7 @@ const PaymentScreen = ({ history }) => {
     history.push("/shipping");
   }
 
-  const [paymentMethod, setPaymentMethod] = useState("PayPal");
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -38,21 +38,32 @@ const PaymentScreen = ({ history }) => {
               id="Paypal"
               name="paymentMethod"
               value="Paypal"
-              checked
+              disabled="false"
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
           </Col>
 
-          {/* <Col>
+          <Col>
             <Form.Check
               type="radio"
-              label="Paystack"
+              label="Pay with Paystack"
               id="Paystack"
               name="paymentMethod"
               value="Paystack"
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
-          </Col> */}
+          </Col>
+
+          <Col>
+            <Form.Check
+              type="radio"
+              label="Pay with Account Number"
+              id="AccountNum"
+              name="paymentMethod"
+              value="AccountNum"
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            ></Form.Check>
+          </Col>
         </Form.Group>
         <Button type="submit" variant="primary">
           Continue
@@ -63,6 +74,3 @@ const PaymentScreen = ({ history }) => {
 };
 
 export default PaymentScreen;
-
-// import Loader from "../components/Loader";
-// import Message from "../components/Message";

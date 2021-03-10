@@ -22,7 +22,8 @@ const ShippingScreen = ({ history }) => {
     dispatch(
       saveShippingAddress({ address, city, postalCode, country, phoneNum })
     );
-    history.push("/payment");
+    history.push("/placeorder");
+    // history.push("/payment");
   };
 
   return (

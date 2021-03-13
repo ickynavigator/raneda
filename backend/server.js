@@ -5,7 +5,7 @@ import colors from "colors";
 import morgan from "morgan";
 
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
-import { connectFIRE, connectMONGO } from "./config/db.js";
+import { connectFIRE, connectMONGO, connectMAILCHIMP } from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 5000;
 dotenv.config();
 // connectFIRE();
 connectMONGO();
+connectMAILCHIMP();
 const app = express();
 
 if (process.env.NODE_ENV === "development") {

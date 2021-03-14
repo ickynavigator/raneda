@@ -10,7 +10,7 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen";
-import PaymentScreen from "./screens/PaymentScreen";
+// import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
@@ -28,7 +28,7 @@ const App = () => {
           <Switch>
             <Route path="/register" component={RegisterScreen} />
             <Route path="/login" component={LoginScreen} />
-            <Route path="/payment" component={PaymentScreen} />
+            {/* <Route path="/payment" component={PaymentScreen} /> */}
             <Route path="/placeorder" component={PlaceOrderScreen} />
             <Route path="/order/:id" component={OrderScreen} />
             <Route path="/shipping" component={ShippingScreen} />

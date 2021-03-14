@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import { Row, Col, ListGroup, Image, Card, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,6 @@ import {
   ORDER_DELIVER_RESET,
 } from "../constants/orderConstants";
 import {
-  addPayPalScript,
   Paypalfunc,
   Flutterwavefunc,
   PayButt,
@@ -37,9 +36,6 @@ const OrderScreen = ({ match }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  // const cart = useSelector((state) => state.cart);
-  // const { paymentMethod } = cart;
-
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, error, loading } = orderDetails;
 
@@ -49,21 +45,39 @@ const OrderScreen = ({ match }) => {
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
-  useEffect(() => {
-    // addPayPalScript(setSdkReady);
+  const addPayPalScript = async () => {
+    const { data: clientId } = await axios.get("/api/config/paypal");
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+    script.async = true;
+    script.onload = () => {
+      setSdkReady(true);
+    };
+    document.body.appendChild(script);
+  };
 
+  useEffect(() => {
     if (!order || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
-      // if (!window.paypal) {
-      //   addPayPalScript(setSdkReady);
-      // } else {
-      //   setSdkReady(true);
-      // }
+      switch (paymentMethod) {
+        case "Paypal":
+          if (!window.paypal) {
+            addPayPalScript();
+          } else {
+            setSdkReady(true);
+          }
+          break;
+        case "Flutterwave":
+        case "AccountNum":
+        default:
+          break;
+      }
     }
-  }, [dispatch, order, orderId, successPay, successDeliver]);
+  }, [dispatch, order, orderId, successPay, successDeliver, paymentMethod]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, { ...paymentResult, paymentMethod }));
@@ -75,20 +89,13 @@ const OrderScreen = ({ match }) => {
 
   const adminPayHandler = () => {
     const paymentResult = {
-      // id: ,
-      // status: ,
-      // update_time: Date.now(),
-      // email_address: ,
-      // link: e
+      id: "AdminPaid",
+      status: "Succesful",
+      update_time: Date.now(),
+      email_address: userInfo.email,
+      paymentMethod: "AdminPaid",
     };
     dispatch(payOrder(orderId, paymentResult));
-  };
-
-  const paySwitch = (val) => {
-    setPaymentMethod(val);
-    // const node = paySwitchOut(val);
-    // document.getElementById("payOut").appendChild(node);
-    ReactDOM.render(paySwitchOut(val), document.getElementById("payOut"));
   };
 
   const paySwitchOut = (val) => {
@@ -105,21 +112,28 @@ const OrderScreen = ({ match }) => {
         );
       case "Flutterwave":
         const flutterinfo = async () => {
-          const { data: clientId } = await axios.get("/api/config/flutterwave");
-          const flutterdata = {
+          const clientId = await axios
+            .get("/api/config/flutterwave")
+            .then((res) => {
+              return res.data;
+            });
+          const info = {
             pub_key: clientId,
             tx_ref: Date.now(),
             amount: order.totalPrice,
             currency: "ngn",
             customer: {
-              email: userInfo.email,
-              // phonenumber: userInfo.phonenum,
-              name: userInfo.name,
+              email: order.user.email,
+              phonenumber: order.shippingAddress.phoneNum,
+              name: order.shippingAddress.name,
             },
           };
-          return flutterdata;
+          return <Flutterwavefunc info={info} />;
         };
-        return <Flutterwavefunc info={flutterinfo()} />;
+        flutterinfo().then((res) => {
+          console.log(res);
+        });
+        return <></>;
       default:
         return <></>;
     }
@@ -164,13 +178,15 @@ const OrderScreen = ({ match }) => {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <h2>Payment Method</h2>
-              <p>
-                <strong>Method: </strong>
-                {order.paymentMethod}
-              </p>
+              <h2>Payment Status</h2>
               {order.isPaid ? (
-                <Message variant="success">Paid on {order.paidAt}</Message>
+                <>
+                  <p>
+                    <strong>Method: </strong>
+                    {order.paymentMethod}
+                  </p>
+                  <Message variant="success">Paid on {order.paidAt}</Message>
+                </>
               ) : (
                 <Message variant="danger">Not Paid</Message>
               )}
@@ -266,8 +282,8 @@ const OrderScreen = ({ match }) => {
                             id="Paypal"
                             name="paymentMethod"
                             value="Paypal"
-                            disabled="false"
-                            onChange={(e) => paySwitch(e.target.value)}
+                            // disabled
+                            onChange={(e) => setPaymentMethod(e.target.value)}
                           ></Form.Check>
                         </Col>
 
@@ -278,7 +294,7 @@ const OrderScreen = ({ match }) => {
                             id="Flutterwave"
                             name="paymentMethod"
                             value="Flutterwave"
-                            onChange={(e) => paySwitch(e.target.value)}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
                           ></Form.Check>
                         </Col>
 
@@ -289,7 +305,7 @@ const OrderScreen = ({ match }) => {
                             id="AccountNum"
                             name="paymentMethod"
                             value="AccountNum"
-                            onChange={(e) => paySwitch(e.target.value)}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
                           ></Form.Check>
                         </Col>
                       </Form.Group>
@@ -299,7 +315,7 @@ const OrderScreen = ({ match }) => {
                   {paymentMethod && (
                     <ListGroup.Item>
                       {loadingPay && <Loader />}
-                      <div id="payOut"></div>
+                      {paySwitchOut(paymentMethod)}
                     </ListGroup.Item>
                   )}
                 </>

@@ -10,6 +10,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import configRoutes from "./routes/configRoutes.js";
 
 const PORT = process.env.PORT || 5000;
 dotenv.config();
@@ -31,13 +32,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/upload", uploadRoutes);
-
-app.get("/api/config/paypal", (req, res) =>
-  res.send(process.env.PAYPAL_CLIENT_ID)
-);
-app.get("/api/config/flutterwave", (req, res) =>
-  res.send(process.env.FLUTTERWAVE_PUB_KEY)
-);
+app.use("/api/config", configRoutes);
 
 const folder = path.resolve();
 app.use("/uploads", express.static(path.join(folder, "/uploads")));

@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import generateToken from "../utils/generateTokens.js";
 import User from "../models/userModel.js";
+import axios from "axios";
 
 // @desc   Auth User and get token
 // @route  POST /api/users/login
@@ -54,46 +55,6 @@ const registerUser = asyncHandler(async (req, res) => {
   } else {
     res.status(400);
     throw new Error("Invalid User data");
-  }
-});
-
-// @desc   Register A New User on mailchimp
-// @route  POST /api/mailchimp/users
-// @access Public
-const registerUser = asyncHandler(async (req, res) => {
-  const { name, email } = req.body;
-  const key = new Buffer("any:" + process.env.MAILCHIMP_API_KEY).toString(
-    "base64"
-  );
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json;charset=utf-8'",
-      Authorization: `Basic ${key}`,
-    },
-  };
-
-  const data = {
-    email_address: email,
-    status: "subscribed",
-    merge_fields: {
-      NAME: name,
-    },
-  };
-
-  const { data } = await axios.post(
-    `${process.env.MAILCHIMP_URL}`,
-    data,
-    config
-  );
-
-  if (
-    res.status < 300 ||
-    (res.status === 400 && res.body.title === "Member Exists")
-  ) {
-    res.send("Signed Up!");
-  } else {
-    res.send("Sign Up Failed :(");
   }
 });
 

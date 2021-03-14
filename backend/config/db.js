@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const mailchimp = require("@mailchimp/mailchimp_marketing");
+// const mailchimp = require("@mailchimp/mailchimp_marketing");
 // import admin from "firebase-admin";
 // const admin = require("firebase-admin");
 
@@ -36,15 +36,13 @@ export const connectMONGO = async () => {
 };
 
 export const connectMAILCHIMP = async () => {
-  mailchimp.setConfig({
-    apiKey: process.env.MAILCHIMP_API_KEY,
-    server: process.env.MAILCHIMP_SERVER,
-  });
-
-  async function callPing() {
-    const response = await mailchimp.ping.get();
-    console.log(response);
-  }
-
-  callPing();
+  // mailchimp.setConfig({
+  //   apiKey: process.env.MAILCHIMP_API_KEY,
+  //   server: process.env.MAILCHIMP_SERVER,
+  // });
+  // async function callPing() {
+  //   const response = await mailchimp.ping.get();
+  //   console.log(response, "mailchimp");
+  // }
+  // callPing();
 };

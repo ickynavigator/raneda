@@ -117,12 +117,14 @@ const ProfileScreen = ({ location, history }) => {
         ) : (
           <Table striped bordered hover responsive className="table-sm">
             <thead>
-              <th>ID</th>
-              <th>DATE</th>
-              <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
-              <th></th>
+              <tr>
+                <th>ID</th>
+                <th>DATE</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+                <th></th>
+              </tr>
             </thead>
             <tbody>
               {orders.map((order) => (

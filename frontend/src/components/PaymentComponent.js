@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import { Button, ListGroup } from "react-bootstrap";
 import { PayPalButton } from "react-paypal-button-v2";
@@ -7,6 +7,7 @@ import Loader from "./Loader";
 
 // payment method "flutt"
 export const Flutterwavefunc = ({ info }) => {
+  console.log(info);
   const config = {
     public_key: info.pub_key,
     tx_ref: info.tx_ref,
@@ -14,15 +15,14 @@ export const Flutterwavefunc = ({ info }) => {
     currency: info.currency,
     payment_options: "card,mobilemoney,ussd",
     customer: {
-      email: info.email,
-      phonenumber: info.number ? info.number : null,
-      name: info.name,
+      email: info.customer.email,
+      phonenumber: info.customer.number,
+      name: info.customer.name,
     },
     customizations: {
       title: "Raneda Store",
       description: "Payment for Raneda shopping",
-      logo:
-        "https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg",
+      logo: "/favicon.ico",
     },
   };
 
@@ -40,21 +40,11 @@ export const Flutterwavefunc = ({ info }) => {
 
   return (
     <>
-      <Button onClick={handleFlutterPaymentHandler}>Pay with Paystack</Button>
+      <Button onClick={handleFlutterPaymentHandler}>
+        Pay with Flutterwave
+      </Button>
     </>
   );
-};
-
-export const addPayPalScript = async (setSdkReady) => {
-  const { data: clientId } = await axios.get("/api/config/paypal");
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-  script.async = true;
-  script.onload = () => {
-    setSdkReady(true);
-  };
-  document.body.appendChild(script);
 };
 
 export const Paypalfunc = ({ sdkReady, amount, handler }) => {

@@ -6,7 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import Loader from "./Loader";
 
 // payment method "flutt"
-export const Flutterwavefunc = ({ info }) => {
+export const Flutterwavefunc = ({ info, handler }) => {
   console.log(info);
   const config = {
     public_key: info.pub_key,
@@ -31,8 +31,20 @@ export const Flutterwavefunc = ({ info }) => {
   const handleFlutterPaymentHandler = () => {
     handleFlutterPayment({
       callback: (res) => {
-        console.log(res);
-        closePaymentModal(); // this will close the modal programmatically
+        const val = {
+          id: res.transaction_id,
+          flw_ref: res.flw_ref,
+          tx_ref: res.tx_ref,
+          status: res.status,
+          update_time: Date.now(),
+          paymentMethod: res.paymentResult,
+          payer: {
+            email_address: res.customer.email,
+            phone_number: res.customer.phonenumber,
+          },
+        };
+        handler(val);
+        closePaymentModal();
       },
       onClose: () => {},
     });

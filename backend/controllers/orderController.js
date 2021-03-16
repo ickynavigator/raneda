@@ -65,6 +65,8 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     order.paymentMethod = req.body.paymentMethod;
     order.paymentResult = {
       id: req.body.id,
+      flw_ref: req.body.flw_ref ? req.body.flw_ref : "",
+      tx_ref: req.body.tx_ref ? req.body.tx_ref : "",
       status: req.body.status,
       update_time: req.body.update_time,
       email_address: req.body.payer.email_address,

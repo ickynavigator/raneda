@@ -31,6 +31,12 @@ const OrderScreen = ({ match }) => {
 
   const [paymentMethod, setPaymentMethod] = useState("");
 
+  const [clidflutterwave, setClidflutterwave] = useState("");
+
+  const [clidpaypal, setClidpaypal] = useState("");
+
+  const [errorPay, setErrorPay] = useState("");
+
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -45,42 +51,56 @@ const OrderScreen = ({ match }) => {
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
-  const addPayPalScript = async () => {
-    const { data: clientId } = await axios.get("/api/config/paypal");
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-    script.async = true;
-    script.onload = () => {
-      setSdkReady(true);
-    };
-    document.body.appendChild(script);
-  };
-
   useEffect(() => {
-    if (!order || successPay || successDeliver) {
+    const addPayPalScript = async () => {
+      const { data: val } = await axios.get("/api/config/paypal");
+      setClidpaypal(val);
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=${val}`;
+      script.async = true;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
+
+    const addFlutterCode = async () => {
+      const { data: val } = await axios.get("/api/config/flutterwave");
+      setClidflutterwave(val);
+    };
+
+    if (!order || successPay || successDeliver || order._id !== orderId) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
-      switch (paymentMethod) {
-        case "Paypal":
-          if (!window.paypal) {
-            addPayPalScript();
-          } else {
-            setSdkReady(true);
-          }
-          break;
-        case "Flutterwave":
-        case "AccountNum":
-        default:
-          break;
+      if (!clidflutterwave) {
+        addFlutterCode();
+      }
+      if (!window.paypal) {
+        addPayPalScript();
+      } else {
+        setSdkReady(true);
       }
     }
-  }, [dispatch, order, orderId, successPay, successDeliver, paymentMethod]);
+  }, [
+    dispatch,
+    order,
+    orderId,
+    successPay,
+    successDeliver,
+    paymentMethod,
+    clidpaypal,
+    clidflutterwave,
+  ]);
 
-  const successPaymentHandler = (paymentResult) => {
-    dispatch(payOrder(orderId, { ...paymentResult, paymentMethod }));
+  const PaymentHandler = (paymentResult) => {
+    if (paymentResult.status === "successful") {
+      dispatch(payOrder(orderId, { ...paymentResult, paymentMethod }));
+    } else {
+      setErrorPay(paymentResult.status);
+    }
   };
 
   const adminDeliverHandler = () => {
@@ -107,33 +127,22 @@ const OrderScreen = ({ match }) => {
           <Paypalfunc
             sdkReady={sdkReady}
             amount={order.totalPrice}
-            handler={successPaymentHandler}
+            handler={PaymentHandler}
           />
         );
       case "Flutterwave":
-        const flutterinfo = async () => {
-          const clientId = await axios
-            .get("/api/config/flutterwave")
-            .then((res) => {
-              return res.data;
-            });
-          const info = {
-            pub_key: clientId,
-            tx_ref: Date.now(),
-            amount: order.totalPrice,
-            currency: "ngn",
-            customer: {
-              email: order.user.email,
-              phonenumber: order.shippingAddress.phoneNum,
-              name: order.shippingAddress.name,
-            },
-          };
-          return <Flutterwavefunc info={info} />;
+        const info = {
+          pub_key: clidflutterwave,
+          tx_ref: Date.now(),
+          amount: order.totalPrice,
+          currency: "ngn",
+          customer: {
+            email: order.user.email,
+            phonenumber: order.shippingAddress.phoneNum,
+            name: order.shippingAddress.name,
+          },
         };
-        flutterinfo().then((res) => {
-          console.log(res);
-        });
-        return <></>;
+        return <Flutterwavefunc info={info} handler={PaymentHandler} />;
       default:
         return <></>;
     }
@@ -315,6 +324,9 @@ const OrderScreen = ({ match }) => {
                   {paymentMethod && (
                     <ListGroup.Item>
                       {loadingPay && <Loader />}
+                      {errorPay && (
+                        <Message variant="danger">{errorPay}</Message>
+                      )}
                       {paySwitchOut(paymentMethod)}
                     </ListGroup.Item>
                   )}

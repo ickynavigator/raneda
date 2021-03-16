@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import colors from "colors";
 
-import connectDB from "./config/db.js";
+import { connectFIRE, connectMONGO, connectMAILCHIMP } from "./config/db.js";
 //Data
 import users from "./data/users.js";
 import products from "./data/products.js";
@@ -13,7 +13,7 @@ import Product from "./models/productModel.js";
 
 dotenv.config();
 
-await connectDB();
+await connectMONGO();
 
 const importData = async () => {
   try {

@@ -76,7 +76,10 @@ export const AcctNum = () => {
     <>
       <h3>"ACCOUNT NUMBER HERE"</h3>
       <h3>"BANK ACCOUNT HERE"</h3>
-      <LinkContainer to={"STRING FOR WHATSAPP"}>
+      <LinkContainer
+        to={"STRING FOR WHATSAPP"}
+        className="d-flex justify-content-center align-items-center"
+      >
         <Button variant="primary" className="btn-sm">
           Verify with Whatsapp
         </Button>

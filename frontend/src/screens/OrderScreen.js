@@ -142,7 +142,11 @@ const OrderScreen = ({ match }) => {
             name: order.shippingAddress.name,
           },
         };
-        return <Flutterwavefunc info={info} handler={PaymentHandler} />;
+        return (
+          <div className="d-flex justify-content-center align-items-center">
+            <Flutterwavefunc info={info} handler={PaymentHandler} />
+          </div>
+        );
       default:
         return <></>;
     }

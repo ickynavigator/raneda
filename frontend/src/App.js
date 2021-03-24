@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Header from "./components/Header";
+// import Header from "./components/Header";
+import HeaderTwo from "./components/HeaderTwo";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import HomeScreen from "./screens/HomeScreen";
@@ -18,11 +19,13 @@ import ProductListScreen from "./screens/ProductListScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import OrderScreen from "./screens/OrderScreen";
+import ContactScreen from "./screens/ContactScreen";
 
 const App = () => {
   return (
     <Router>
-      <Header />
+      {/* <Header /> */}
+      <HeaderTwo />
       <main className="py-3">
         <Container>
           <Switch>
@@ -33,6 +36,7 @@ const App = () => {
             <Route path="/order/:id" component={OrderScreen} />
             <Route path="/shipping" component={ShippingScreen} />
             <Route path="/profile" component={ProfileScreen} />
+            <Route path="/Contact" component={ContactScreen} />
             <Route path="/product/:id" component={ProductScreen} />
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/admin/orderlist" component={OrderListScreen} />

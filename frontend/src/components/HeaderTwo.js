@@ -5,18 +5,6 @@ import { Link } from "react-router-dom";
 // import { logout } from "../actions/userActions";
 // import SearchBox from "./SearchBox";
 
-const list = {
-  color: "red",
-  textDecoration: "none",
-  textAlign: "center",
-};
-const listitem = {
-  color: "black",
-  textDecoration: "none",
-  font: "normal normal 9.65802px/11px Raleway",
-  letterSpacing: "0.505em",
-};
-
 const Header = ({ location }) => {
   // const userLogin = useSelector((state) => state.userLogin);
   // const { userInfo } = userLogin;
@@ -29,7 +17,7 @@ const Header = ({ location }) => {
   // };
 
   return (
-    <Nav>
+    <Nav as="header">
       <Container>
         <Row>
           <div className="raneda-text col align-self-center">RANEDA</div>
@@ -49,23 +37,20 @@ const Header = ({ location }) => {
           </Col>
         </Row>
         <Row>
-          <Col style={list}>
-            <Link to="/contact" style={listitem}>
+          <Col className="list">
+            <Link to="/contact" className="an">
               CONTACT
             </Link>
-            {/* <a href="/" style={listitem}>
-              CONTACT
-            </a> */}
           </Col>
 
-          <Col style={list}>
-            <Link to="/shop" style={listitem}>
+          <Col className="list">
+            <Link to="/shop" className="an">
               SHOP
             </Link>
           </Col>
 
-          <Col style={list}>
-            <Link to="/services" style={listitem}>
+          <Col className="list">
+            <Link to="/services" className="an">
               SERVICES
             </Link>
           </Col>
@@ -128,3 +113,18 @@ export default Header;
 //       </Navbar.Collapse>
 //     </Container>
 //   </Navbar>
+
+// const list = {
+//   color: "red",
+//   textDecoration: "none",
+//   textAlign: "center",
+// };
+// const listitem = {
+//   color: "black",
+//   textDecoration: "none",
+//   font: "normal normal 9.65802px/11px Raleway",
+//   letterSpacing: "0.505em",
+// };
+// <a href="/" style={listitem}>
+//    CONTACT
+// </a>

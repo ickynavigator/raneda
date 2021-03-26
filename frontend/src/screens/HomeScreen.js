@@ -1,52 +1,67 @@
 import { useEffect } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Product from "../components/Product";
+import ProductTwo from "../components/ProductTwo";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listProducts } from "../actions/productActions";
-import Paginate from "../components/Paginate";
-import ProductCarousel from "../components/ProductCarousel";
+import { listTopProducts } from "../actions/productActions";
 import Meta from "../components/Meta";
 
-const HomeScreen = ({ match }) => {
-  const keyword = match.params.keyword;
-  const pageNumber = match.params.pageNumber || 1;
+const HomeScreen = () => {
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.productList);
-  const { loading, error, products, pages, page } = productList;
+  const productTopRated = useSelector((state) => state.productTopRated);
+  const { loading, error, products } = productTopRated;
 
   useEffect(() => {
-    dispatch(listProducts(keyword, pageNumber));
-  }, [dispatch, keyword, pageNumber]);
+    dispatch(listTopProducts());
+  }, [dispatch]);
 
   return (
     <>
       <Meta />
-      {!keyword ? (
-        <ProductCarousel />
-      ) : (
-        <Link to="/" className="btn btn-light">
-          Go Home
-        </Link>
-      )}
-      <h1>Latest Product</h1>
-      {loading ? (
-        <Loader></Loader>
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
-      ) : (
-        <Row>
-          {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
-            </Col>
-          ))}
-        </Row>
-      )}
-      <Paginate pages={pages} page={page} keyword={keyword ? keyword : ""} />
+
+      <div className="first-layer">
+        <div className="new-bonnets">NEW BONNETS</div>
+        <div>
+          <Image
+            src="\uploads\ranedaimg\GROUP_BONNET_PICTURE.png"
+            alt=""
+            className="layer-image"
+            fluid
+          />
+        </div>
+      </div>
+      <div className="second-layer">
+        <div className="second-header">GET YOUR NAMES ON YOUR BONNETS</div>
+
+        <div className="cardItem">
+          <Container className="d-flex justify-content-center align-items-center">
+            {loading ? (
+              <Loader></Loader>
+            ) : error ? (
+              <Message variant="danger">{error}</Message>
+            ) : (
+              <Row className="justify-content-center align-items-center">
+                {products.map((product) => (
+                  <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                    <ProductTwo product={product} />
+                  </Col>
+                ))}
+              </Row>
+            )}
+          </Container>
+        </div>
+
+        <div className="getyours">
+          <Link to="/shop">
+            <Button type="button" className="btn">
+              GET YOURS NOW
+            </Button>
+          </Link>
+        </div>
+      </div>
     </>
   );
 };

@@ -17,18 +17,24 @@ const Header = ({ location }) => {
   // };
 
   return (
-    <Nav as="header">
+    <Nav as="header" className="header">
       <Container>
-        <Row>
-          <div className="raneda-text col align-self-center">RANEDA</div>
-        </Row>
-
         <Row>
           <Col className="user-icon">
             <i className="far fa-user"></i>
           </Col>
 
-          <Col className="hairMakeup">Hair and Makeup</Col>
+          <Col>
+            <div className="logo-container">
+              <Link to="">
+                <img
+                  src="\uploads\ranedaimg\RanedaLogo Isolated.png"
+                  alt=""
+                  className="logo"
+                />
+              </Link>
+            </div>
+          </Col>
 
           <Col className="shopping-cart">
             <Link to="/cart">

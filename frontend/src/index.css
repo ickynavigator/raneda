@@ -53,75 +53,35 @@ h3 {
 }
 
 /* Harold */
-
-/* #header{
-    position: absolute;
-    width: 100%;
-    height: 89px;
-     height: 158px;
-    left: 0px;
-    top: 0px;
-
-    background: #FFF0F0
-} */
-
-header .container,
-.header .container-fluid {
-  background: #fff0f0;
-  height: auto;
+.header {
+  width: 100%;
+  background-color: #fff0f0;
 }
 
-.logo-up {
-  /* position: absolute;
-  width: 181.09px;
-  height: 45.78px;
-  left: 608.92px;
-  top: 8.8px; */
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 30.9057px;
-  line-height: 36px;
-  letter-spacing: 0.4em;
-
-  color: #835858;
-}
-
-.raneda-text {
+.header .logo {
+  width: 100px;
+  height: 100px;
   text-align: center;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 30.9057px;
-  line-height: 36px;
-  letter-spacing: 0.4em;
-  color: #835858;
 }
 
-.hairMakeup {
+.header .logo-container {
   text-align: center;
-  font-family: Great Vibes;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 11.5896px;
-  line-height: 15px;
-  /* identical to box height */
-
-  letter-spacing: 0.1em;
-  color: #835858;
 }
 
-.shopping-cart {
+.header .user-icon {
+  margin-top: 3.5%;
+  color: #f56a79;
+}
+
+.header .shopping-cart {
+  margin-top: 3.5%;
+  color: #f56a79;
   text-align: end;
 }
 
-.list {
-  color: black;
-  text-decoration: none;
+.header .list {
   text-align: center;
 }
-
 .an {
   color: black;
   text-decoration: none;
@@ -132,7 +92,7 @@ header .container,
   line-height: 11px;
   letter-spacing: 0.505em;
 }
-
+/* ====================================================== STYLING FOR CONTACT PAGE =================================== */
 .contact-body {
   margin-top: 2%;
   margin-right: auto;
@@ -164,7 +124,7 @@ header .container,
   color: #686d76;
 }
 
-/* ================== SHOP STYLING ================== */
+/* ====================================================  SHOP STYLING ============================================ */
 .discount-card-section {
   margin-top: 2%;
 }
@@ -310,7 +270,7 @@ header .container,
   margin-top: 10%;
 }
 
-/* ==================  STYLING FOR PRODUCT INFORMATION PAGE  ================== */
+/* ==============================================================  STYLING FOR PRODUCT INFORMATION PAGE  =================== */
 .productInformation {
   margin-top: 8%;
 }
@@ -500,7 +460,7 @@ header .container,
   text-align: center;
 }
 
-/* ==================  HOME PAGE STYLING ================== */
+/* ============================================  HOME PAGE STYLING =============================================== */
 .first-layer {
   height: auto;
   width: 80%;
@@ -561,17 +521,17 @@ header .container,
   letter-spacing: 0.24em;
 }
 
-/* .cardItem .card-body {
+.cardItem .card-body {
   padding-top: 1%;
   padding-bottom: 1%;
-} */
+}
 
-/* .cardItem .card-img-top {
+.cardItem .card-img-top {
   width: 70%;
   height: 140%;
   border-radius: 100%;
   margin: 0 auto 0 auto;
-} */
+}
 
 .bonnet-1 {
   text-align: end;
@@ -621,7 +581,7 @@ header .container,
   text-align: center;
 }
 
-/* ==================  STYLING FOR THE CART PAGE ================== */
+/* ==============================================  STYLING FOR THE CART PAGE =========================================== */
 
 .cart-header {
   text-align: center;
@@ -794,6 +754,31 @@ header .container,
   text-align: center;
 }
 
+/* ======================================================  SIGN UP PAGE STYLING ======================================== */
+.signup-header {
+  width: 100%;
+  background-color: #fff0f0;
+}
+
+.signup-header .logo {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+
+.signup-header .logo-container {
+  text-align: center;
+}
+
+.signup-header .user-icon {
+  margin-top: 3.5%;
+  color: #f56a79;
+}
+
+.signup-header .shopping-cart {
+  margin-top: 3.5%;
+  color: #f56a79;
+}
 /* Media Queries */
 @media (max-width: 768px) {
   .first-layer {

@@ -56,12 +56,12 @@ const ShopScreen = ({ match }) => {
               <div className="text-1">SHOP ALL</div>
             </Col>
             <Col>
-              <div class="text-2">SORT</div>
+              <div className="text-2">SORT</div>
             </Col>
           </Row>
         </Container>
       </div>
-      <h1>Latest Product</h1>
+
       {loading ? (
         <Loader></Loader>
       ) : error ? (

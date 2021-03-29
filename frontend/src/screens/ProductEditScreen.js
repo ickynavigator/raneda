@@ -20,6 +20,8 @@ const ProductEditScreen = ({ match, history }) => {
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [toShow, setToShow] = useState(false);
   const [uploading, setUploading] = useState(false);
 
   const dispatch = useDispatch();
@@ -52,6 +54,8 @@ const ProductEditScreen = ({ match, history }) => {
         setCategory(product.category);
         setCountInStock(product.countInStock);
         setDescription(product.description);
+        setToShow(product.toShow);
+        setDiscount(product.discount);
       }
     }
   }, [dispatch, product, productId, history, successUpdate]);
@@ -68,6 +72,8 @@ const ProductEditScreen = ({ match, history }) => {
         category,
         countInStock,
         description,
+        toShow,
+        discount,
       })
     );
   };
@@ -131,6 +137,18 @@ const ProductEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
+            <Form.Group controlId="discount">
+              <Form.Label>Discount</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter Discount %"
+                value={discount}
+                min={0}
+                max={100}
+                onChange={(e) => setDiscount(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
             <Form.Group controlId="Image">
               <Form.Label>Image</Form.Label>
               <Form.Control
@@ -186,6 +204,17 @@ const ProductEditScreen = ({ match, history }) => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="toshow">
+              <Form.Label>Show Item</Form.Label>
+              <Form.Check
+                type="checkbox"
+                label="Show Item"
+                checked={toShow}
+                disabled={toShow}
+                onChange={(e) => setToShow(e.target.checked)}
+              ></Form.Check>
             </Form.Group>
 
             <Button type="submit" variant="primary">

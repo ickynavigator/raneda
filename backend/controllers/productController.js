@@ -66,6 +66,8 @@ const createProduct = asyncHandler(async (req, res) => {
     countInStock: 0,
     numReviews: 0,
     description: "Sample Description",
+    toShow: true,
+    discount: 0,
   });
 
   const createdProduct = await product.save();
@@ -84,6 +86,8 @@ const updateProduct = asyncHandler(async (req, res) => {
     category,
     countInStock,
     description,
+    toShow,
+    discount,
   } = req.body;
 
   const product = await Product.findById(req.params.id);
@@ -96,6 +100,8 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.category = category || product.category;
     product.countInStock = countInStock || product.countInStock;
     product.description = description || product.description;
+    product.toShow = toShow || product.toShow;
+    product.discount = discount || product.discount;
 
     const updatedProduct = await product.save();
     res.json(updatedProduct);
@@ -150,6 +156,33 @@ const createProductReview = asyncHandler(async (req, res) => {
 const getTopProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({}).sort({ rating: -1 }).limit(3);
 
+  res.json(products);
+});
+
+// @desc   Get Cheapest Products
+// @route  GET /api/products/cheapest
+// @access Public
+const getCheapestProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ price: 1 });
+  res.json(products);
+});
+
+// @desc   Get Most Expensive Products
+// @route  GET /api/products/expensive
+// @access Public
+const getExpensiveProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ price: -1 });
+  res.json(products);
+});
+
+// @desc   Get Products by Price Limit
+// @route  GET /api/products/limit
+// @access Public
+const getTopProducts = asyncHandler(async (req, res) => {
+  const { lower, upper } = req.body;
+  const products = await Product.find({
+    price: { $gt: lower, $lt: upper },
+  }).sort({ price: -1 });
   res.json(products);
 });
 

@@ -66,9 +66,9 @@ const productSchema = mongoose.Schema(
       required: true,
       default: 0,
     },
-    discount: {
+    toShow: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   { timestamps: true }

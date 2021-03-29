@@ -125,7 +125,7 @@ const ProductEditScreen = ({ match, history }) => {
               <Form.Label>Price</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Enter Price"
+                placeholder="Enter Price ₦"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>

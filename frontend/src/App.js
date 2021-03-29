@@ -1,7 +1,6 @@
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import Header from "./components/Header";
-import HeaderTwo from "./components/HeaderTwo";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import HomeScreen from "./screens/HomeScreen";
@@ -25,27 +24,21 @@ import ShopScreen from "./screens/ShopScreen";
 const App = () => {
   return (
     <Router>
-      {/* <Header /> */}
-      <HeaderTwo />
+      <Header />
       <main className="py-3">
         <Container>
           <Switch>
-            <Route path="/register" component={RegisterScreen} />
+            {/* Login, Register Screen */}
             <Route path="/login" component={LoginScreen} />
-            {/* <Route path="/payment" component={PaymentScreen} /> */}
-            <Route path="/placeorder" component={PlaceOrderScreen} />
-            <Route path="/order/:id" component={OrderScreen} />
-            <Route path="/shipping" component={ShippingScreen} />
-            <Route path="/shop" component={ShopScreen} />
+            <Route path="/register" component={RegisterScreen} />
             <Route path="/profile" component={ProfileScreen} />
-            <Route path="/Contact" component={ContactScreen} />
-            <Route path="/product/:id" component={ProductScreen} />
-            <Route path="/cart/:id?" component={CartScreen} />
+
+            {/* Admin Screens */}
             <Route path="/admin/orderlist" component={OrderListScreen} />
             <Route
               path="/admin/productlist"
-              exact
               component={ProductListScreen}
+              exact
             />
             <Route
               path="/admin/productlist/:pageNumber"
@@ -58,14 +51,28 @@ const App = () => {
             />
             <Route path="/admin/userlist" component={UserListScreen} />
             <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-            <Route path="/search/:keyword" exact component={HomeScreen} />
+
+            {/* <Route path="/payment" component={PaymentScreen} /> */}
+            <Route path="/placeorder" component={PlaceOrderScreen} />
+            <Route path="/order/:id" component={OrderScreen} />
+            <Route path="/shipping" component={ShippingScreen} />
+            <Route path="/contact" component={ContactScreen} />
+            <Route path="/product/:id" component={ProductScreen} />
+            <Route path="/cart/:id?" component={CartScreen} />
+
+            {/* Shop Screens */}
+            <Route path="/shop" component={ShopScreen} />
+            <Route path="/search/:keyword" exact component={ShopScreen} />
             <Route
               path="/search/:keyword/page/:pageNumber"
               exact
-              component={HomeScreen}
+              component={ShopScreen}
             />
-            <Route path="/page/:pageNumber" exact component={HomeScreen} />
+            <Route path="/page/:pageNumber" exact component={ShopScreen} />
+
             <Route path="/" exact component={HomeScreen} />
+
+            {/* 404 pages */}
             <Route component={NotFound} />
           </Switch>
         </Container>

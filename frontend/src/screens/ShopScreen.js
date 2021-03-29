@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { listProducts } from "../actions/productActions";
 import Paginate from "../components/Paginate";
-import ProductCarousel from "../components/ProductCarousel";
 import Meta from "../components/Meta";
 
 const ShopScreen = ({ match }) => {
@@ -22,16 +21,12 @@ const ShopScreen = ({ match }) => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
+  const productWithDiscount = [];
+  products.map((x) => productWithDiscount.push({ ...x, discount: 25 }));
+  console.table(productWithDiscount);
   return (
     <>
       <Meta />
-      {/* {!keyword ? (
-        <ProductCarousel />
-      ) : (
-        <Link to="/" className="btn btn-light">
-          Go Home
-        </Link>
-      )} */}
       <div className="discount-card-section">
         <Container fluid>
           <Row>
@@ -68,11 +63,14 @@ const ShopScreen = ({ match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <Row>
-          {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product} />
-            </Col>
-          ))}
+          {products.map(
+            (product) =>
+              product.toShow && (
+                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                  <Product product={product} />
+                </Col>
+              )
+          )}
         </Row>
       )}
       <Paginate pages={pages} page={page} keyword={keyword ? keyword : ""} />

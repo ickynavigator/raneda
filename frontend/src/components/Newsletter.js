@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import FormContainer from "./FormContainer";
-import Message from "./Message";
 
-const Newsletter = ({ name, email }) => {
-  const [name, set];
+const Newsletter = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const submitHandler = () => {};
+
   return (
     <>
       <FormContainer>

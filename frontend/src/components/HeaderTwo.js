@@ -1,27 +1,51 @@
 // import { Route } from "react-router-dom";
-import { Col, Container, Nav, Row } from "react-bootstrap";
-// import { useDispatch, useSelector } from "react-redux";
+import { Col, Container, Nav, NavDropdown, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-// import { logout } from "../actions/userActions";
+import { logout } from "../actions/userActions";
+import { LinkContainer } from "react-router-bootstrap";
 // import SearchBox from "./SearchBox";
 
 const Header = ({ location }) => {
-  // const userLogin = useSelector((state) => state.userLogin);
-  // const { userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const logoutHandler = () => {
-  //   dispatch(logout());
-  //   window.location.reload();
-  // };
+  const logoutHandler = () => {
+    dispatch(logout());
+    window.location.reload();
+  };
 
+  const profileIcon = <i className="fas fa-user"></i>;
   return (
     <Nav as="header" className="header">
       <Container>
         <Row>
           <Col className="user-icon">
-            <i className="far fa-user"></i>
+            {userInfo ? (
+              <NavDropdown
+                title={
+                  <span>
+                    <i className="fas fa-user"></i> {userInfo.name}
+                  </span>
+                }
+                id="username"
+              >
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item>Profile</NavDropdown.Item>
+                </LinkContainer>
+                <NavDropdown.Item onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <LinkContainer to="/login">
+                <Nav.Link>
+                  <i className="fas fa-user"></i>Sign In
+                </Nav.Link>
+              </LinkContainer>
+            )}
           </Col>
 
           <Col>
@@ -38,7 +62,7 @@ const Header = ({ location }) => {
 
           <Col className="shopping-cart">
             <Link to="/cart">
-              <i className="fas fa-shopping-cart"></i>
+              <i className="fas fa-shopping-cart"></i>Cart
             </Link>
           </Col>
         </Row>

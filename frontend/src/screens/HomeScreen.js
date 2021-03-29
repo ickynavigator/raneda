@@ -56,7 +56,7 @@ const HomeScreen = () => {
 
         <div className="getyours">
           <Link to="/shop">
-            <Button type="button" className="btn">
+            <Button type="button" className="btn my-3">
               GET YOURS NOW
             </Button>
           </Link>

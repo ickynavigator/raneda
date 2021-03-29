@@ -68,14 +68,23 @@ h3 {
   text-align: center;
 }
 
-.header .user-icon {
+.header .user-icon,
+.header .shopping-cart {
   margin-top: 3.5%;
+  text-decoration: none;
+}
+
+.header .user-icon i,
+.header .shopping-cart i {
   color: #f56a79;
 }
 
+.header .user-icon a:link,
+.header .shopping-cart a:link {
+  text-decoration: none;
+}
+
 .header .shopping-cart {
-  margin-top: 3.5%;
-  color: #f56a79;
   text-align: end;
 }
 
@@ -130,7 +139,7 @@ h3 {
 }
 
 .test {
-  width: 50%;
+  /* width: 50%; */
   background-color: #ebd4d4;
   margin: 0 auto 0 auto;
   text-align: center;
@@ -526,12 +535,12 @@ h3 {
   padding-bottom: 1%;
 }
 
-.cardItem .card-img-top {
+/* .cardItem .card-img-top {
   width: 70%;
   height: 140%;
   border-radius: 100%;
   margin: 0 auto 0 auto;
-}
+} */
 
 .bonnet-1 {
   text-align: end;
@@ -598,14 +607,14 @@ h3 {
   padding-top: 2%;
 }
 
-.cart-body {
+/* .cart-body {
   width: 75%;
   margin: 3% auto 0 auto;
-}
+} */
 
-.cart-item {
+/* .cart-item {
   margin-bottom: 3%;
-}
+} */
 
 .cart-body .cart-name {
   font-family: Josefin Sans;
@@ -614,7 +623,7 @@ h3 {
   font-size: 25.3208px;
   line-height: 25px;
 
-  text-align: end;
+  /* text-align: end; */
 }
 
 .cart-body .cart-price {
@@ -624,14 +633,14 @@ h3 {
   font-size: 27.3267px;
   line-height: 32px;
 
-  text-align: end;
+  /* text-align: end; */
 }
-.cart-body .cart-image {
+/* .cart-body .cart-image {
   width: 96px;
   height: 111.67px;
   margin-left: 100%;
   margin-right: 0;
-}
+} */
 
 .cart-body .quantity {
   margin-top: 2%;
@@ -713,8 +722,8 @@ h3 {
 }
 
 .cart-body .trash-icon {
-  margin-top: 10%;
-  font-size: 150%;
+  /* margin-top: 10%; */
+  /* font-size: 150%; */
 
   color: red;
 }
@@ -755,7 +764,7 @@ h3 {
 }
 
 /* ======================================================  SIGN UP PAGE STYLING ======================================== */
-.signup-header {
+/* .signup-header {
   width: 100%;
   background-color: #fff0f0;
 }
@@ -778,10 +787,112 @@ h3 {
 .signup-header .shopping-cart {
   margin-top: 3.5%;
   color: #f56a79;
+} */
+
+/* .signup-body {
+  width: 75%;
+  margin: 5% auto 0 auto;
+  background-color: red;
+} */
+
+.signup-text {
+  text-align: center;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 23.8436px;
+  line-height: 24px;
+  letter-spacing: 0.395em;
+
+  margin-bottom: 5%;
 }
+
+.signup-body .signup-fields {
+  text-align: center;
+}
+
+.signup-btn {
+  text-align: center;
+}
+
+.signup-body .submit-btn,
+.btn-submitStyle {
+  width: 20%;
+
+  background-color: #ebd4d4;
+  border: 1.81291px solid #ebd4d4;
+  box-sizing: border-box;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.1965px;
+  line-height: 12px;
+  letter-spacing: 0.395em;
+  padding: 7px;
+
+  margin-top: 3%;
+}
+
+.signup-fields input {
+  /* box-sizing: border-box; */
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 0.5px solid;
+  padding-top: 2%;
+  padding-bottom: 0.5%;
+
+  width: 50%;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: 150%;
+  font-size: 23.3127px;
+  line-height: 23px;
+  /* identical to box height */
+
+  color: black;
+}
+
+.signup-body .or {
+  text-align: center;
+
+  margin-top: 2%;
+  margin-bottom: 2%;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.1965px;
+  line-height: 12px;
+}
+
+.signup-body .alternate {
+  text-align: center;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17.2784px;
+  line-height: 17px;
+
+  color: #3a7de1;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
   .first-layer {
     display: none !important;
   }
+  /* .discount-text1,
+  .discount-text2,
+  .discount-text3,
+  .discount-text4 {
+    letter-spacing: 0;
+  }
+  .test {
+    padding: 3px;
+  } */
 }

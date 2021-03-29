@@ -40,9 +40,9 @@ const ShopScreen = ({ match }) => {
                 <div className="discount-text1">RANEDA MONTHLY SALE</div>
                 <div className="discount-text2">25% OFF!!</div>
                 <div className="discount-text3">ALL BONNETS</div>
-                <div className="discount-text4">
+                {/* <div className="discount-text4">
                   PLUS NEW EXCLUSIVES ON OUR NEWSLETTER
-                </div>
+                </div> */}
               </div>
             </Col>
           </Row>

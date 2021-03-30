@@ -59,6 +59,24 @@ const ProductScreen = ({ history, match }) => {
     dispatch(createProductReview(match.params.id, { rating, comment }));
   };
 
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2);
+  };
+
+  const discountedPriceCalc = (num, discount) => {
+    const foo = addDecimals((100 - discount) * 0.01 * num);
+    return (
+      <>
+        {foo} <del>{num}</del>
+      </>
+    );
+  };
+
+  product.discountedPrice = discountedPriceCalc(
+    product.price,
+    product.discount
+  );
+
   return (
     <>
       <Link className="btn btn-dark my-3" to="/">
@@ -86,7 +104,12 @@ const ProductScreen = ({ history, match }) => {
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ₦{product.price}</ListGroup.Item>
+                <ListGroup.Item>
+                  Price: ₦
+                  {product.discount > 0
+                    ? product.discountedPrice
+                    : product.price}
+                </ListGroup.Item>
                 <ListGroup.Item>
                   Description: {product.description}
                 </ListGroup.Item>

@@ -1,6 +1,10 @@
 import path from "path";
 import express from "express";
 import multer from "multer";
+import asyncHandler from "express-async-handler";
+import cloudinarypkg from "cloudinary";
+const cloudinary = cloudinarypkg;
+
 import { admin, protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
@@ -36,8 +40,20 @@ const upload = multer({
   },
 });
 
-router.post("/", protect, admin, upload.single("image"), (req, res) => {
-  res.send(`/${req.file.path}`);
-});
+// router.post("/", protect, admin, upload.single("image"), (req, res) => {
+//   res.send(`/${req.file.path}`);
+// });
 
+router.post(
+  "/",
+  protect,
+  admin,
+  upload.single("image"),
+  asyncHandler(async (req, res) => {
+    const uploadPhoto = await cloudinary.uploader.upload(`${req.file.path}`);
+    console.log(uploadPhoto); // This will give you all the information back from the uploaded photo result
+    console.log(uploadPhoto.url); // This is what we want to send back now in the  res.send
+    res.send(uploadPhoto.url);
+  })
+);
 export default router;

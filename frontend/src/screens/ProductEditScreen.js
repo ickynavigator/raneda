@@ -132,6 +132,7 @@ const ProductEditScreen = ({ match, history }) => {
               <Form.Control
                 type="number"
                 placeholder="Enter Price ₦"
+                min={0}
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>

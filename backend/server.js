@@ -3,6 +3,8 @@ import express from "express";
 import dotenv from "dotenv";
 import colors from "colors";
 import morgan from "morgan";
+import cloudinarypkg from "cloudinary";
+const cloudinary = cloudinarypkg;
 
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import { connectFIRE, connectMONGO, connectMAILCHIMP } from "./config/db.js";
@@ -27,6 +29,12 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(express.json());
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);

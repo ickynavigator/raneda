@@ -159,32 +159,32 @@ const getTopProducts = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
-// @desc   Get Cheapest Products
-// @route  GET /api/products/cheapest
-// @access Public
-const getCheapestProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ price: 1 });
-  res.json(products);
-});
+// // @desc   Get Cheapest Products
+// // @route  GET /api/products/cheapest
+// // @access Public
+// const getCheapestProducts = asyncHandler(async (req, res) => {
+//   const products = await Product.find({}).sort({ price: 1 });
+//   res.json(products);
+// });
 
-// @desc   Get Most Expensive Products
-// @route  GET /api/products/expensive
-// @access Public
-const getExpensiveProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ price: -1 });
-  res.json(products);
-});
+// // @desc   Get Most Expensive Products
+// // @route  GET /api/products/expensive
+// // @access Public
+// const getExpensiveProducts = asyncHandler(async (req, res) => {
+//   const products = await Product.find({}).sort({ price: -1 });
+//   res.json(products);
+// });
 
-// @desc   Get Products by Price Limit
-// @route  GET /api/products/limit
-// @access Public
-const getTopProducts = asyncHandler(async (req, res) => {
-  const { lower, upper } = req.body;
-  const products = await Product.find({
-    price: { $gt: lower, $lt: upper },
-  }).sort({ price: -1 });
-  res.json(products);
-});
+// // @desc   Get Products by Price Limit
+// // @route  GET /api/products/limit
+// // @access Public
+// const getTopProducts = asyncHandler(async (req, res) => {
+//   const { lower, upper } = req.body;
+//   const products = await Product.find({
+//     price: { $gt: lower, $lt: upper },
+//   }).sort({ price: -1 });
+//   res.json(products);
+// });
 
 export {
   getProducts,

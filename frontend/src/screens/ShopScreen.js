@@ -21,9 +21,6 @@ const ShopScreen = ({ match }) => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
-  const productWithDiscount = [];
-  products.map((x) => productWithDiscount.push({ ...x, discount: 25 }));
-  console.table(productWithDiscount);
   return (
     <>
       <Meta />
@@ -44,7 +41,7 @@ const ShopScreen = ({ match }) => {
         </Container>
       </div>
 
-      <div className="filter-bar">
+      {/* <div className="filter-bar">
         <Container fluid>
           <Row>
             <Col>
@@ -55,7 +52,7 @@ const ShopScreen = ({ match }) => {
             </Col>
           </Row>
         </Container>
-      </div>
+      </div> */}
 
       {loading ? (
         <Loader></Loader>

@@ -106,8 +106,8 @@ h3 {
   margin-top: 2%;
   margin-right: auto;
   margin-left: auto;
-  width: 50%;
-
+  /* width: 50%; */
+  text-align: center;
   padding: 1.5%;
   background-color: #fff0f0;
 }
@@ -143,6 +143,7 @@ h3 {
   background-color: #ebd4d4;
   margin: 0 auto 0 auto;
   text-align: center;
+  padding: 3px;
 }
 
 .discount-text1 {
@@ -891,8 +892,5 @@ h3 {
   .discount-text3,
   .discount-text4 {
     letter-spacing: 0;
-  }
-  .test {
-    padding: 3px;
   } */
 }

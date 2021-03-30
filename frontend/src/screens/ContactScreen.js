@@ -1,6 +1,9 @@
+import Meta from "../components/Meta";
+
 const ContactScreen = () => {
   return (
     <>
+      <Meta title="Contact Us" />
       <div className="contact-body">
         <p>CONTACT US</p>
         <div className="contact-body-text">

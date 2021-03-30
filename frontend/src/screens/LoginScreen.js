@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { login } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
+import Meta from "../components/Meta";
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -32,53 +33,60 @@ const LoginScreen = ({ location, history }) => {
   };
 
   return (
-    <div className="signup-body">
-      <FormContainer>
-        <h1 className="signup-text">Log In</h1>
-        {error && <Message variant="danger">{error}</Message>}
-        {loading && <Loader />}
-        <Form onSubmit={submitHandler}>
-          <Form.Group controlId="email">
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
+    <>
+      <Meta title="Log In" />
+      <div className="signup-body">
+        <FormContainer>
+          <h1 className="signup-text">Log In</h1>
+          {error && <Message variant="danger">{error}</Message>}
+          {loading && <Loader />}
+          <Form onSubmit={submitHandler}>
+            <Form.Group controlId="email">
+              <Form.Label>Email Address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
 
-          <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
 
-          <div className="signup-btn">
-            <Button type="submit" variant="submitStyle" className="submit-btn">
-              Sign In
-            </Button>
-          </div>
-        </Form>
+            <div className="signup-btn">
+              <Button
+                type="submit"
+                variant="submitStyle"
+                className="submit-btn"
+              >
+                Sign In
+              </Button>
+            </div>
+          </Form>
 
-        <div className="or">or</div>
+          <div className="or">or</div>
 
-        <Row className="py-3 alternate">
-          <Col>
-            New Customer?{" "}
-            <Link
-              to={redirect ? `/register?redirect=${redirect}` : "/register"}
-            >
-              Create a new account
-            </Link>
-          </Col>
-        </Row>
-      </FormContainer>
-    </div>
+          <Row className="py-3 alternate">
+            <Col>
+              New Customer?{" "}
+              <Link
+                to={redirect ? `/register?redirect=${redirect}` : "/register"}
+              >
+                Create a new account
+              </Link>
+            </Col>
+          </Row>
+        </FormContainer>
+      </div>
+    </>
   );
 };
 

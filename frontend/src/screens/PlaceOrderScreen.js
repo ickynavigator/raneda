@@ -7,6 +7,7 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { createOrder } from "../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 import { USER_DETAILS_RESET } from "../constants/userConstants";
+import Meta from "../components/Meta";
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const PlaceOrderScreen = ({ history }) => {
 
   return (
     <>
+      <Meta title="Place Order" />
       <CheckoutSteps step1 step2 step3 />
       <Row>
         <Col md={8}>

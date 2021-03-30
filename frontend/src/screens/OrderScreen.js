@@ -96,7 +96,11 @@ const OrderScreen = ({ match }) => {
   ]);
 
   const PaymentHandler = (paymentResult) => {
-    if (paymentResult.status === "successful") {
+    console.log(paymentResult);
+    if (
+      (paymentResult.status === "successful") |
+      (paymentResult.status === "COMPLETED")
+    ) {
       dispatch(payOrder(orderId, { ...paymentResult, paymentMethod }));
     } else {
       setErrorPay(paymentResult.status);

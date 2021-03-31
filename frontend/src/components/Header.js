@@ -63,7 +63,7 @@ const Header = ({ location }) => {
             <div className="logo-container">
               <Link to="">
                 <img
-                  src="\uploads\ranedaimg\RanedaLogo Isolated.png"
+                  src="\uploads\images\ranedaimg\RanedaLogo Isolated.png"
                   alt=""
                   className="logo"
                 />

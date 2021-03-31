@@ -26,7 +26,7 @@ const HomeScreen = () => {
         <div className="new-bonnets">NEW BONNETS</div>
         <div>
           <Image
-            src="\uploads\ranedaimg\GROUP_BONNET_PICTURE.png"
+            src="\uploads\images\ranedaimg\GROUP_BONNET_PICTURE.png"
             alt=""
             className="layer-image"
             fluid

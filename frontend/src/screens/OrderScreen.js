@@ -114,7 +114,7 @@ const OrderScreen = ({ match }) => {
   const adminPayHandler = () => {
     const paymentResult = {
       id: "AdminPaid",
-      status: "Succesful",
+      status: "succesful",
       update_time: Date.now(),
       email_address: userInfo.email,
       paymentMethod: "AdminPaid",

@@ -1,0 +1,822 @@
+.header {
+  width: 100%;
+  background-color: #fff0f0;
+}
+
+.header .logo {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+
+.header .logo-container {
+  text-align: center;
+}
+
+.header .user-icon {
+  margin-top: 3.5%;
+  color: #f56a79;
+}
+
+.header .shopping-cart {
+  margin-top: 3.5%;
+  color: #f56a79;
+}
+
+.header .list {
+  text-align: center;
+}
+.an {
+  color: black;
+  text-decoration: none;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 9.65802px;
+  line-height: 11px;
+  letter-spacing: 0.505em;
+
+  text-align: center;
+}
+/* ====================================================== STYLING FOR CONTACT PAGE =================================== */
+.contact-body {
+  margin-top: 2%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+
+  padding: 1.5%;
+  background-color: #fff0f0;
+}
+
+.contact-body P {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 38.4194px;
+  line-height: 38px;
+
+  color: #686d76;
+}
+
+.contact-body-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.4806px;
+  line-height: 15px;
+  padding-bottom: 1%;
+
+  color: #686d76;
+}
+
+/* ====================================================  SHOP STYLING ============================================ */
+.discount-card-section {
+  margin-top: 2%;
+}
+
+.test {
+  width: 50%;
+  background-color: #ebd4d4;
+  margin: 0 auto 0 auto;
+  text-align: center;
+}
+
+.discount-text1 {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19.159px;
+  line-height: 19px;
+  letter-spacing: 0.445em;
+
+  color: #373a40;
+
+  padding-top: 1.5%;
+}
+.discount-text2 {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 75.3491px;
+  line-height: 75px;
+  /* identical to box height */
+
+  color: #000000;
+}
+.discount-text3 {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 27.1305px;
+  line-height: 27px;
+  letter-spacing: 0.445em;
+
+  color: #000000;
+}
+.discount-text4 {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16.0317px;
+  line-height: 16px;
+  letter-spacing: 0.445em;
+
+  color: #000000;
+
+  padding-bottom: 1.5%;
+}
+.text-1 {
+  margin-left: 15%;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15.5893px;
+  line-height: 19px;
+  /* identical to box height */
+
+  letter-spacing: 0.145em;
+}
+.text-2 {
+  text-align: end;
+  margin-right: 17%;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15.5893px;
+  line-height: 19px;
+  /* identical to box height */
+
+  letter-spacing: 0.145em;
+}
+
+.filter-bar {
+  margin-top: 2%;
+}
+
+.shop-body {
+  width: 75%;
+  margin: 0 auto 0 auto;
+}
+
+.card {
+  text-align: center;
+  margin: 0 auto 0 auto;
+}
+.shop-body .card-title {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 9.75723px;
+  line-height: 11px;
+  text-align: center;
+  letter-spacing: 0.485em;
+}
+
+.shop-body .card-text {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19.5145px;
+  line-height: 23px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: 0.24em;
+}
+
+.shop-body button {
+  color: black;
+
+  background-color: #ebd4d4;
+  border: 1.81291px solid #ebd4d4;
+  box-sizing: border-box;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14.6358px;
+  line-height: 15px;
+
+  padding: 7px;
+}
+
+.item-1 {
+  text-align: center;
+}
+
+.shop-body .card-img-top {
+  width: 190.27px;
+  height: 223.6px;
+}
+
+.shop-body .container-fluid {
+  margin-top: 10%;
+}
+
+/* ==============================================================  STYLING FOR PRODUCT INFORMATION PAGE  =================== */
+.productInformation {
+  margin-top: 8%;
+}
+
+.image-holder {
+  text-align: end;
+  margin-right: 5%;
+}
+
+.details-holder {
+  margin-top: 7%;
+}
+.productImage {
+  width: 244.98px;
+  height: 260.8px;
+}
+
+.productInformation .productName {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30.3849px;
+  line-height: 30px;
+}
+
+.productInformation .productPrice {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 53.5496px;
+  line-height: 63px;
+  /* identical to box height */
+
+  padding-bottom: 1.5%;
+
+  letter-spacing: 0.24em;
+}
+
+.productInformation button {
+  color: black;
+  width: 40%;
+  margin-bottom: 1%;
+
+  background-color: #ebd4d4;
+  border: 1.81291px solid #ebd4d4;
+  box-sizing: border-box;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14.6358px;
+  line-height: 15px;
+  letter-spacing: 0.395em;
+
+  padding: 7px;
+}
+
+.productInformation .custom-select {
+  position: relative;
+  font-family: Arial;
+  border: 0.633019px solid #c4c4c4;
+  box-sizing: border-box;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: white;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15.2887px;
+  line-height: 19px;
+  /* identical to box height */
+
+  text-align: center;
+
+  letter-spacing: 0.265em;
+
+  color: #686d76;
+
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: #fff0f0;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.productInformation .heading-text {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30.3849px;
+  line-height: 30px;
+  /* identical to box height */
+
+  letter-spacing: 0.2em;
+
+  color: #f56a79;
+
+  text-align: center;
+  margin-top: 1%;
+}
+
+.productInformation .sub-header {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17.4374px;
+  line-height: 17px;
+  /* identical to box height */
+
+  letter-spacing: 0.2em;
+
+  color: #686d76;
+
+  text-align: center;
+}
+
+.productInformation .about-text {
+  width: 80%;
+  margin: 0 auto 0 auto;
+  text-align: center;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13.0373px;
+  line-height: 16px;
+
+  color: #686d76;
+}
+
+.productInformation .attributes {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11.708px;
+  line-height: 14px;
+  letter-spacing: 0.2em;
+
+  color: #686d76;
+  text-align: center;
+}
+
+/* ============================================  HOME PAGE STYLING =============================================== */
+.first-layer {
+  height: auto;
+  width: 80%;
+  margin: 3% auto 0 auto;
+}
+.first-layer .new-bonnets {
+  position: absolute;
+  width: 495.24px;
+  height: 50.22px;
+  left: 466.06px;
+  top: 160.79px;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 63.4346px;
+  line-height: 63px;
+
+  color: #f56a79;
+}
+
+.first-layer .layer-image {
+  width: 1016.07px;
+  height: 700.98px;
+
+  margin-left: 6%;
+}
+
+.second-layer {
+  height: auto;
+  width: 80%;
+  margin: 0 auto 0 auto;
+  background-color: #fff0f0;
+  padding-top: 3%;
+}
+
+.second-layer .second-header {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 45.6229px;
+  line-height: 46px;
+
+  color: #f56a79;
+
+  text-align: center;
+}
+
+.cardItem .card-text {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 19.5145px;
+  line-height: 23px;
+  /* identical to box height */
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.24em;
+}
+
+.cardItem .card-body {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.cardItem .card-img-top {
+  width: 70%;
+  height: 140%;
+  border-radius: 100%;
+  margin: 0 auto 0 auto;
+}
+
+.bonnet-1 {
+  text-align: end;
+}
+
+.bonnet-2 {
+  text-align: center;
+}
+
+.bonnet-3 {
+  text-align: start;
+}
+
+.second-layer button {
+  color: black;
+  width: 40%;
+  margin-bottom: 1%;
+
+  background-color: #ebd4d4;
+  border: 1.81291px solid #ebd4d4;
+  box-sizing: border-box;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14.6358px;
+  line-height: 15px;
+  letter-spacing: 0.395em;
+
+  padding: 7px;
+}
+
+.getyours {
+  text-align: center;
+  margin: 3% auto 0 auto;
+}
+
+.second-layer .newsHeader {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 45.2051px;
+  line-height: 53px;
+
+  color: #f56a79;
+
+  text-align: center;
+}
+
+/* ==============================================  STYLING FOR THE CART PAGE =========================================== */
+
+.cart-header {
+  text-align: center;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30.3849px;
+  line-height: 30px;
+  letter-spacing: 0.2em;
+
+  color: #f56a79;
+
+  padding-top: 2%;
+}
+
+.cart-body {
+  width: 75%;
+  margin: 3% auto 0 auto;
+}
+
+.cart-item {
+  margin-bottom: 3%;
+}
+
+.cart-body .cart-name {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25.3208px;
+  line-height: 25px;
+
+  text-align: end;
+}
+
+.cart-body .cart-price {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 27.3267px;
+  line-height: 32px;
+
+  text-align: end;
+}
+.cart-body .cart-image {
+  width: 96px;
+  height: 111.67px;
+  margin-left: 100%;
+  margin-right: 0;
+}
+
+.cart-body .quantity {
+  margin-top: 2%;
+}
+
+.cart-body .custom-select {
+  position: relative;
+  font-family: Arial;
+  border: 0.633019px solid #c4c4c4;
+  box-sizing: border-box;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: white;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,
+.select-selected {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15.2887px;
+  line-height: 19px;
+  /* identical to box height */
+
+  text-align: center;
+
+  letter-spacing: 0.265em;
+
+  color: #686d76;
+
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: #fff0f0;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.cart-body .trash-icon {
+  margin-top: 10%;
+  font-size: 150%;
+
+  color: red;
+}
+
+.order-prices {
+  margin-bottom: 10%;
+}
+
+.order-prices .price-text {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.1965px;
+  line-height: 12px;
+  letter-spacing: 0.395em;
+
+  text-align: center;
+}
+
+.order-prices .checkout-btn {
+  width: 20%;
+
+  background-color: #ebd4d4;
+  border: 1.81291px solid #ebd4d4;
+  box-sizing: border-box;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.1965px;
+  line-height: 12px;
+  letter-spacing: 0.395em;
+  padding: 7px;
+}
+
+.order-prices .check-btn {
+  text-align: center;
+}
+
+/* ======================================================  SIGN UP PAGE STYLING ======================================== */
+.signup-header {
+  width: 100%;
+  background-color: #fff0f0;
+}
+
+.signup-header .logo {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+
+.signup-header .list {
+  text-align: center;
+}
+.signup-header .logo-container {
+  text-align: center;
+}
+
+.signup-header .user-icon {
+  margin-top: 3.5%;
+  color: #f56a79;
+}
+
+.signup-header .shopping-cart {
+  margin-top: 3.5%;
+  color: #f56a79;
+  text-align: end;
+}
+
+.signup-body {
+  width: 75%;
+  margin: 5% auto 0 auto;
+  /* background-color: red; */
+}
+
+.signup-text {
+  text-align: center;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 23.8436px;
+  line-height: 24px;
+  letter-spacing: 0.395em;
+
+  margin-bottom: 5%;
+}
+
+.signup-body .signup-fields {
+  text-align: center;
+}
+
+.signup-btn {
+  text-align: center;
+}
+
+.signup-body .submit-btn {
+  width: 20%;
+
+  background-color: #ebd4d4;
+  border: 1.81291px solid #ebd4d4;
+  box-sizing: border-box;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.1965px;
+  line-height: 12px;
+  letter-spacing: 0.395em;
+  padding: 7px;
+
+  margin-top: 3%;
+}
+
+.signup-fields input {
+  /* box-sizing: border-box; */
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 0.5px solid;
+  padding-top: 2%;
+  padding-bottom: 0.5%;
+
+  width: 50%;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: 150%;
+  font-size: 23.3127px;
+  line-height: 23px;
+  /* identical to box height */
+
+  color: black;
+}
+
+.signup-body .or {
+  text-align: center;
+
+  margin-top: 2%;
+  margin-bottom: 2%;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.1965px;
+  line-height: 12px;
+}
+
+.signup-body .alternate {
+  text-align: center;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17.2784px;
+  line-height: 17px;
+
+  color: #3a7de1;
+}

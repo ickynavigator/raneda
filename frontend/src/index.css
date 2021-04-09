@@ -298,7 +298,8 @@ h3 {
   height: 260.8px;
 }
 
-.productInformation .productName {
+.productInformation .productName,
+.productName {
   font-family: Josefin Sans;
   font-style: normal;
   font-weight: normal;
@@ -1196,7 +1197,7 @@ h3 {
 .card-btn {
   text-align: center;
 }
-
+/* ---------------------- My Changes----------------------- */
 /* Media Queries */
 @media (max-width: 768px) {
   .first-layer {
@@ -1208,4 +1209,16 @@ h3 {
   .discount-text4 {
     letter-spacing: 0;
   } */
+}
+
+.btn-Harry {
+  background-color: #ebd4d4;
+  color: black;
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14.6358px;
+  line-height: 15px;
+  letter-spacing: 0.395em;
+  /* padding: 7px; */
 }

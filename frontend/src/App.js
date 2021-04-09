@@ -62,9 +62,10 @@ const App = () => {
 
             {/* Shop Screens */}
             <Route path="/shop" component={ShopScreen} />
-            <Route path="/search/:keyword" exact component={ShopScreen} />
+            {/* <Route path="/search/:filter" exact component={ShopScreen} /> */}
+            {/* <Route path="/shop/:filter&:keyword" exact component={ShopScreen} /> */}
             <Route
-              path="/search/:keyword/page/:pageNumber"
+              path="/shop/:keyword/page/:pageNumber"
               exact
               component={ShopScreen}
             />

@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Col, Container, Row, Form } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product";
@@ -8,18 +8,36 @@ import Loader from "../components/Loader";
 import { listProducts } from "../actions/productActions";
 import Paginate from "../components/Paginate";
 import Meta from "../components/Meta";
+import SearchBox from "../components/SearchBox";
+import { useLocation } from "react-router";
 
-const ShopScreen = ({ match }) => {
-  const keyword = match.params.keyword;
-  const pageNumber = match.params.pageNumber || 1;
+const ShopScreen = ({ history, location }) => {
   const dispatch = useDispatch();
+  let pathname = location.pathname.substr(1);
+
+  const search = useLocation().search;
+  const keyword = new URLSearchParams(search).get("keyword") || "";
+  const filter = new URLSearchParams(search).get("filter") || "";
+  const pageNumber = new URLSearchParams(search).get("pageNumber") || 1;
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, pages, page } = productList;
 
+  const [filterState, setFilterState] = useState(filter);
+
   useEffect(() => {
-    dispatch(listProducts(keyword, pageNumber));
-  }, [dispatch, keyword, pageNumber]);
+    const filterProducts = () => {
+      const pageNumString = pageNumber > 1 ? `&page=${pageNumber}` : "";
+      const keywordString = keyword.length > 0 ? `&keyword=${keyword}` : "";
+      const newUrl = `${pathname}?filter=${filterState}${pageNumString}${keywordString}`;
+      history.push(newUrl);
+    };
+
+    if (filterState.length > 1) {
+      filterProducts(filterState);
+    }
+    dispatch(listProducts(keyword, pageNumber, filter));
+  }, [dispatch, keyword, pageNumber, filterState, history, pathname, filter]);
 
   return (
     <>
@@ -41,18 +59,57 @@ const ShopScreen = ({ match }) => {
         </Container>
       </div>
 
-      {/* <div className="filter-bar">
+      <div className="filter-bar">
         <Container fluid>
           <Row>
-            <Col>
-              <div className="text-1">SHOP ALL</div>
+            <Col className="d-flex justify-content-start align-items-center">
+              <SearchBox history={history} location={location} />
             </Col>
-            <Col>
-              <div className="text-2">SORT</div>
+            <Col className="d-flex justify-content-end">
+              <Form.Group>
+                <Form.Label>SORT BY:</Form.Label>
+                <Form.Control
+                  as="select"
+                  value={filterState}
+                  onChange={(e) => setFilterState(e.target.value)}
+                >
+                  <option key="featured" value="featured">
+                    Featured
+                  </option>
+                  <option key="newest" value="newest">
+                    Newest
+                  </option>
+                  <option key="priceLH" value="priceLH">
+                    Price: Low to High
+                  </option>
+                  <option key="priceHL" value="priceHL">
+                    Price: High to Low
+                  </option>
+                </Form.Control>
+              </Form.Group>
             </Col>
           </Row>
         </Container>
-      </div> */}
+        {/* <Modal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          // size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Sorting
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ListGroup variant="flush">
+              <ListGroup.Item>Newest</ListGroup.Item>
+            </ListGroup>
+          </Modal.Body>
+        </Modal> */}
+        {/* <sortSelector show={modalShow} onHide={() => setModalShow(false)} /> */}
+      </div>
 
       {loading ? (
         <Loader></Loader>

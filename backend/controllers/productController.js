@@ -7,6 +7,7 @@ import Product from "../models/productModel.js";
 const getProducts = asyncHandler(async (req, res) => {
   const pageSize = 10;
   const page = Number(req.query.pageNumber) || 1;
+  const myFilter = req.query.filter;
   const keyword = req.query.keyword
     ? {
         name: {
@@ -15,11 +16,38 @@ const getProducts = asyncHandler(async (req, res) => {
         },
       }
     : {};
+  let products;
+  switch (myFilter) {
+    case "newest":
+      products = await Product.find({ ...keyword })
+        .sort([["_id", -1]])
+        .limit(pageSize)
+        .skip(pageSize * (page - 1));
+      break;
+    case "priceLH":
+      products = await Product.find({ ...keyword })
+        .sort({ price: 1 })
+        .limit(pageSize)
+        .skip(pageSize * (page - 1));
+      break;
+    case "priceHL":
+      products = await Product.find({ ...keyword })
+        .sort({ price: -1 })
+        .limit(pageSize)
+        .skip(pageSize * (page - 1));
+      break;
+    case "featured":
+    default:
+      products = await Product.find({ ...keyword })
+        .limit(pageSize)
+        .skip(pageSize * (page - 1));
+      break;
+  }
 
   const count = await Product.countDocuments({ ...keyword });
-  const products = await Product.find({ ...keyword })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1));
+  // const products = await Product.find({ ...keyword })
+  //   .limit(pageSize)
+  //   .skip(pageSize * (page - 1));
   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
@@ -160,11 +188,14 @@ const getTopProducts = asyncHandler(async (req, res) => {
 });
 
 // // @desc   Get Cheapest Products
-// // @route  GET /api/products/cheapest
+// // @route  GET /api/products/filter
 // // @access Public
-// const getCheapestProducts = asyncHandler(async (req, res) => {
-//   const products = await Product.find({}).sort({ price: 1 });
-//   res.json(products);
+// const filterProducts = asyncHandler(async (req, res) => {
+//   const pageSize = 10;
+//   const page = Number(req.query.pageNumber) || 1;
+
+//   const count = await Product.countDocuments({});
+//   res.json({ products, page, pages: Math.ceil(count / pageSize) });
 // });
 
 // // @desc   Get Most Expensive Products
@@ -172,17 +203,6 @@ const getTopProducts = asyncHandler(async (req, res) => {
 // // @access Public
 // const getExpensiveProducts = asyncHandler(async (req, res) => {
 //   const products = await Product.find({}).sort({ price: -1 });
-//   res.json(products);
-// });
-
-// // @desc   Get Products by Price Limit
-// // @route  GET /api/products/limit
-// // @access Public
-// const getTopProducts = asyncHandler(async (req, res) => {
-//   const { lower, upper } = req.body;
-//   const products = await Product.find({
-//     price: { $gt: lower, $lt: upper },
-//   }).sort({ price: -1 });
 //   res.json(products);
 // });
 

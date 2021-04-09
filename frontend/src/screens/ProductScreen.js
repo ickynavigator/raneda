@@ -79,7 +79,7 @@ const ProductScreen = ({ history, match }) => {
 
   return (
     <>
-      <Link className="btn btn-dark my-3" to="/">
+      <Link className="btn btn-dark my-3 btn-Harry" to="/">
         Go Back
       </Link>
       {loading ? (
@@ -159,6 +159,7 @@ const ProductScreen = ({ history, match }) => {
                       onClick={addToCartHandler}
                       className="btn-block"
                       type="button"
+                      variant="Harry"
                       disabled={product.countInStock === 0}
                     >
                       Add To Cart
@@ -212,7 +213,7 @@ const ProductScreen = ({ history, match }) => {
                           onChange={(e) => setComment(e.target.value)}
                         ></Form.Control>
                       </Form.Group>
-                      <Button type="submit" variant="primary">
+                      <Button type="submit" variant="Harry">
                         Submit
                       </Button>
                     </Form>

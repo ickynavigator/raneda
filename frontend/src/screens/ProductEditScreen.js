@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, InputGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -105,7 +105,7 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
-      <Meta title="Edit Product" />
+      <Meta title={`Edit Product | ${name}`} />
       <Link to="/admin/productList" className="btn btn-light my-3">
         Go Back
       </Link>
@@ -126,30 +126,44 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder="Enter Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
+              />
             </Form.Group>
 
             <Form.Group controlId="price">
               <Form.Label>Price</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter Price ₦"
-                min={0}
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              ></Form.Control>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text id="basic-addon1">₦</InputGroup.Text>
+                </InputGroup.Prepend>
+                <Form.Control
+                  type="number"
+                  placeholder="Enter Price"
+                  aria-label="Price"
+                  aria-describedby="basic-addon1"
+                  min={0}
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </InputGroup>
             </Form.Group>
 
             <Form.Group controlId="discount">
               <Form.Label>Discount</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter Discount %"
-                value={discount}
-                min={0}
-                max={100}
-                onChange={(e) => setDiscount(e.target.value)}
-              ></Form.Control>
+              <InputGroup>
+                <Form.Control
+                  type="number"
+                  placeholder="Enter Discount %"
+                  aria-label="Discount"
+                  aria-describedby="basic-addon2"
+                  value={discount}
+                  min={0}
+                  max={100}
+                  onChange={(e) => setDiscount(e.target.value)}
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text id="basic-addon2">%</InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
             </Form.Group>
 
             <Form.Group controlId="Image">
@@ -159,13 +173,13 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder="Enter image url"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
-              ></Form.Control>
+              />
               <Form.File
                 id="image-file"
                 label="Choose File"
                 custom
                 onChange={uploadFileHandler}
-              ></Form.File>
+              />
               {uploading && <Loader />}
             </Form.Group>
 
@@ -176,7 +190,7 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder="Enter Brand"
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
-              ></Form.Control>
+              />
             </Form.Group>
 
             <Form.Group controlId="category">
@@ -186,17 +200,17 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder="Enter Category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-              ></Form.Control>
+              />
             </Form.Group>
 
             <Form.Group controlId="countInStock">
               <Form.Label>Count In Stock</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="Count In Stock"
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
-              ></Form.Control>
+              />
             </Form.Group>
 
             <Form.Group controlId="description">
@@ -206,7 +220,7 @@ const ProductEditScreen = ({ match, history }) => {
                 placeholder="Enter Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-              ></Form.Control>
+              />
             </Form.Group>
 
             <Form.Group controlId="toshow">
@@ -216,10 +230,10 @@ const ProductEditScreen = ({ match, history }) => {
                 label="Show Item"
                 checked={toShow}
                 onChange={(e) => setToShow(e.target.checked)}
-              ></Form.Check>
+              />
             </Form.Group>
 
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="Harry">
               Update
             </Button>
           </Form>

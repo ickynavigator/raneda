@@ -1197,6 +1197,107 @@ h3 {
 .card-btn {
   text-align: center;
 }
+
+/* =============================================== PROFILE STYLING ============================================== */
+
+.profile-head-1 {
+  text-align: center;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 23.8436px;
+  line-height: 24px;
+  letter-spacing: 0;
+
+  margin-bottom: 5%;
+  color: #f56a79;
+}
+
+.profile-body {
+  width: 100%;
+  margin: 5% auto 10% auto;
+}
+
+.profile-body .profile-fields {
+  text-align: center;
+  margin-bottom: 2%;
+}
+
+.profile-body input {
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 0.5px solid;
+  padding-top: 2%;
+  padding-bottom: 0.5%;
+
+  width: 50%;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: 150%;
+  font-size: 23.3127px;
+  line-height: 23px;
+  /* identical to box height */
+
+  color: black;
+}
+
+.profile-body .update-btn {
+  width: 20%;
+
+  background-color: #ebd4d4;
+  border: 1.81291px solid #ebd4d4;
+  box-sizing: border-box;
+
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12.1965px;
+  line-height: 12px;
+  letter-spacing: 0.395em;
+  padding: 7px;
+
+  margin-top: 2%;
+}
+
+.profile-body .details-button {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.395em;
+
+  width: 100%;
+  padding-top: 5%;
+  padding-left: 2%;
+}
+
+.profile-fields input {
+  font-size: 15px;
+}
+
+.profile-body .update-btn {
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  /* line-height: 12px; */
+  /* letter-spacing: 0.395em; */
+
+  width: auto;
+  height: 40px;
+  /* padding-top: 5%;
+  padding-left: 2%; */
+  padding-left: 4px;
+  padding-right: 0;
+}
+
+.profile-holder {
+  margin-top: 6%;
+}
 /* ---------------------- My Changes----------------------- */
 /* Media Queries */
 @media (max-width: 768px) {

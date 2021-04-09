@@ -88,10 +88,11 @@ const ShippingScreen = ({ history }) => {
               onChange={(e) => setPhoneNum(e.target.value)}
             ></Form.Control>
           </Form.Group>
-
-          <Button type="submit" variant="primary">
-            Continue
-          </Button>
+          <div className="d-flex flex-column justify-content-center align-items-center">
+            <Button type="submit" variant="Harry">
+              Continue
+            </Button>
+          </div>
         </Form>
       </FormContainer>
     </>

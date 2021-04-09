@@ -62,7 +62,7 @@ const ProfileScreen = ({ location, history }) => {
       <Meta title={userInfo.name} />
       <Row>
         <Col md={3}>
-          <h2>User Profile</h2>
+          <h2 className="adminMenu-header">User Profile</h2>
           {message && <Message variant="danger">{message}</Message>}
           {error && <Message variant="danger">{error}</Message>}
           {success && <Message variant="success">Profile Updated</Message>}
@@ -108,21 +108,21 @@ const ProfileScreen = ({ location, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="Harry">
               Update Details
             </Button>
           </Form>
         </Col>
         <Col md={9}>
-          <h2>My Orders</h2>
+          <h2 className="adminMenu-header">My Orders</h2>
           {loadingOrders ? (
             <Loader />
           ) : errorOrders ? (
             <Message variant="danger">{errorOrders}</Message>
           ) : (
-            <Table striped bordered hover responsive className="table-sm">
+            <Table striped hover responsive className="table-sm">
               <thead>
-                <tr>
+                <tr style={{ textAlign: "center", backgroundColor: "#FFF0F0" }}>
                   <th>ID</th>
                   <th>DATE</th>
                   <th>TOTAL</th>
@@ -133,10 +133,10 @@ const ProfileScreen = ({ location, history }) => {
               </thead>
               <tbody>
                 {orders.map((order) => (
-                  <tr key={order._id}>
+                  <tr key={order._id} style={{ textAlign: "center" }}>
                     <td>{order._id}</td>
                     <td>{order.createdAt.substring(0, 10)}</td>
-                    <td>${order.totalPrice}</td>
+                    <td>₦{order.totalPrice}</td>
                     <td style={{ textAlign: "center" }}>
                       {order.isPaid ? (
                         order.paidAt.substring(0, 10)
@@ -159,7 +159,10 @@ const ProfileScreen = ({ location, history }) => {
                     </td>
                     <td>
                       <LinkContainer to={`/order/${order._id}`}>
-                        <Button className="btn-sm" variant="light">
+                        <Button
+                          className="btn-sm details-button"
+                          variant="light"
+                        >
                           Details
                         </Button>
                       </LinkContainer>

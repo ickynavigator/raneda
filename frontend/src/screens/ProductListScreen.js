@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button, Row, Col } from "react-bootstrap";
+import { Table, Button, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
@@ -74,16 +74,16 @@ const ProductListScreen = ({ history, match }) => {
   return (
     <>
       <Meta title="List Product" />
-      <Row className="align-items-center">
-        <Col>
-          <h1>Products</h1>
-        </Col>
-        <Col className="text-right">
-          <Button className="my-3" onClick={createProductHandler}>
-            <i className="fas fa-plus"></i> Create Product
-          </Button>
-        </Col>
-      </Row>
+      {/* <Row className="align-items-center"> */}
+      <Col>
+        <h1 className="adminMenu-header">Products</h1>
+      </Col>
+      <Col className="text-left">
+        <Button variant="Harry" className="my-3" onClick={createProductHandler}>
+          <i className="fas fa-plus"></i> Create Product
+        </Button>
+      </Col>
+      {/* </Row> */}
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
       {loadingCreate && <Loader />}
@@ -94,9 +94,9 @@ const ProductListScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Table striped bordered hover responsive className="table-sm">
+          <Table striped hover responsive className="table-sm">
             <thead>
-              <tr>
+              <tr style={{ textAlign: "center", backgroundColor: "#FFF0F0" }}>
                 <th>ID</th>
                 <th>NAME</th>
                 <th>PRICE</th>
@@ -107,7 +107,7 @@ const ProductListScreen = ({ history, match }) => {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr key={product._id}>
+                <tr key={product._id} style={{ textAlign: "center" }}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>₦{product.price}</td>

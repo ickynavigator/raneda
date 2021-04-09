@@ -36,15 +36,15 @@ const UserListScreen = ({ history }) => {
   return (
     <>
       <Meta title="Users" />
-      <h1>Users</h1>
+      <h1 className="adminMenu-header">Users</h1>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className="table-sm">
+        <Table striped hover responsive className="table-sm">
           <thead>
-            <tr>
+            <tr style={{ textAlign: "center", backgroundColor: "#FFF0F0" }}>
               <th>ID</th>
               <th>NAME</th>
               <th>EMAIL</th>
@@ -54,7 +54,7 @@ const UserListScreen = ({ history }) => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user._id}>
+              <tr key={user._id} style={{ textAlign: "center" }}>
                 <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>
